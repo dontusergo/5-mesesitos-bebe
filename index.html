@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#150b10">
+  <title>Felices 5 mesesitos mamorsh mio</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --night: #150b10;
+      --blue: #29121b;
+      --teal: #c7aeb5;
+      --cream: #f4e8e8;
+      --gold: #c89562;
+      --rose: #b7485b;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--cream);
+      background:
+        radial-gradient(ellipse at 50% 15%, #c63f70 0, transparent 43%),
+        radial-gradient(ellipse at 5% 78%, #a62b60 0, transparent 38%),
+        radial-gradient(ellipse at 96% 68%, #89377d 0, transparent 41%),
+        radial-gradient(ellipse at 48% 105%, #67224e 0, transparent 58%),
+        radial-gradient(ellipse at 82% 8%, #713b88 0, transparent 32%),
+        var(--night);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      content: "";
+      opacity: .18;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      min-height: 100svh;
+      place-items: center;
+      padding: 32px 18px;
+    }
+
+    .roses {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .roses::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      opacity: .75;
+      background:
+        radial-gradient(circle at 12% 24%, #ffd0e588 0 2px, transparent 7px),
+        radial-gradient(circle at 76% 17%, #ffe4b888 0 2px, transparent 8px),
+        radial-gradient(circle at 89% 48%, #ff9fbc99 0 3px, transparent 9px),
+        radial-gradient(circle at 23% 69%, #ffd8a877 0 2px, transparent 8px),
+        radial-gradient(circle at 63% 83%, #ffb3cf99 0 3px, transparent 9px),
+        radial-gradient(circle at 42% 35%, #ffd8a877 0 2px, transparent 7px),
+        radial-gradient(circle at 5% 48%, #ff7fa855 0 2px, transparent 8px),
+        radial-gradient(circle at 95% 92%, #ffc1df66 0 3px, transparent 10px);
+      animation: bokeh-glow 6s ease-in-out infinite alternate;
+    }
+
+    .rose, .heart, .detail {
+      position: absolute;
+      bottom: -12vh;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      opacity: .78;
+      filter: drop-shadow(0 0 12px #ff668966);
+      animation: rose-drift 15s linear infinite;
+    }
+
+    .rose:nth-child(1) { left: 8%; animation-delay: -2s; }
+    .rose:nth-child(2) { left: 22%; font-size: 1.3rem; animation-delay: -11s; animation-duration: 19s; }
+    .rose:nth-child(3) { left: 39%; animation-delay: -7s; animation-duration: 17s; }
+    .rose:nth-child(4) { left: 61%; font-size: 1.4rem; animation-delay: -13s; animation-duration: 20s; }
+    .rose:nth-child(5) { left: 78%; animation-delay: -4s; animation-duration: 18s; }
+    .rose:nth-child(6) { left: 92%; font-size: 1.2rem; animation-delay: -9s; }
+    .heart:nth-child(7) { left: 15%; font-size: 1.5rem; animation-delay: -8s; animation-duration: 18s; }
+    .heart:nth-child(8) { left: 31%; font-size: 1.2rem; animation-delay: -15s; animation-duration: 21s; }
+    .heart:nth-child(9) { left: 49%; font-size: 1.6rem; animation-delay: -3s; animation-duration: 16s; }
+    .heart:nth-child(10) { left: 69%; font-size: 1.3rem; animation-delay: -10s; animation-duration: 20s; }
+    .heart:nth-child(11) { left: 85%; font-size: 1.5rem; animation-delay: -6s; animation-duration: 17s; }
+    .heart:nth-child(12) { left: 97%; font-size: 1.2rem; animation-delay: -13s; animation-duration: 19s; }
+    .detail:nth-child(13) { left: 5%; font-size: 1.1rem; animation-delay: -5s; animation-duration: 22s; }
+    .detail:nth-child(14) { left: 27%; font-size: 1.2rem; animation-delay: -17s; animation-duration: 18s; }
+    .detail:nth-child(15) { left: 44%; font-size: 1rem; animation-delay: -9s; animation-duration: 23s; }
+    .detail:nth-child(16) { left: 56%; font-size: 1.2rem; animation-delay: -14s; animation-duration: 19s; }
+    .detail:nth-child(17) { left: 73%; font-size: 1rem; animation-delay: -3s; animation-duration: 21s; }
+    .detail:nth-child(18) { left: 94%; font-size: 1.2rem; animation-delay: -12s; animation-duration: 17s; }
+
+    .message {
+      position: absolute;
+      bottom: -20vh;
+      width: max-content;
+      max-width: min(290px, 78vw);
+      padding: 10px 14px;
+      color: #fff0f5;
+      background: linear-gradient(135deg, #b63865dd, #672b66e8);
+      border: 1px solid #ffd0df99;
+      border-radius: 18px 18px 18px 4px;
+      box-shadow: 0 0 24px #fa6da866, inset 0 0 14px #ffc1df22;
+      font: 600 .82rem/1.5 "Trebuchet MS", sans-serif;
+      text-align: center;
+      text-shadow: 0 1px 5px #4a1734;
+      animation: message-drift 21s linear infinite;
+    }
+
+    .message:nth-child(19) { left: 2%; animation-delay: -5s; }
+    .message:nth-child(20) { right: 2%; animation-delay: -13s; animation-duration: 24s; }
+    .message:nth-child(21) { left: 4%; animation-delay: -19s; animation-duration: 26s; }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 12px 2px #c8956266;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+
+    .star:nth-child(1) { top: 13%; left: 14%; }
+    .star:nth-child(2) { top: 24%; left: 83%; animation-delay: .8s; }
+    .star:nth-child(3) { top: 75%; left: 9%; animation-delay: 1.4s; }
+    .star:nth-child(4) { top: 82%; left: 89%; animation-delay: .4s; }
+    .star:nth-child(5) { top: 9%; left: 63%; animation-delay: 1.8s; }
+    .star:nth-child(6) { top: 58%; left: 93%; animation-delay: 1.1s; }
+
+    .card {
+      position: relative;
+      width: min(100%, 700px);
+      padding: clamp(28px, 6vw, 58px);
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, #a94c6c66, transparent 58%),
+        linear-gradient(145deg, #672b43f5, #351522f5 72%),
+        var(--blue);
+      border: 1px solid #e0a0aa99;
+      border-radius: 3px;
+      box-shadow: 0 22px 80px #000a, 0 0 48px #f06a9160, inset 0 0 0 7px #3c132488;
+      animation: appear 900ms ease-out both;
+    }
+
+    .card::before, .card::after {
+      position: absolute;
+      inset: 12px;
+      content: "";
+      pointer-events: none;
+      border: 1px dashed #c8956277;
+      border-radius: 3px;
+    }
+
+    .card::after {
+      inset: 17px;
+      border: 0;
+      background:
+        radial-gradient(circle at 0 0, var(--rose) 0 2px, transparent 3px),
+        radial-gradient(circle at 100% 0, var(--rose) 0 2px, transparent 3px),
+        radial-gradient(circle at 0 100%, var(--rose) 0 2px, transparent 3px),
+        radial-gradient(circle at 100% 100%, var(--rose) 0 2px, transparent 3px);
+    }
+
+    .eyebrow {
+      margin: 0 0 13px;
+      color: var(--teal);
+      font-family: "Trebuchet MS", sans-serif;
+      font-size: clamp(.57rem, 2vw, .72rem);
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--cream);
+      font-size: clamp(2.5rem, 8vw, 5.2rem);
+      font-weight: 400;
+      line-height: .98;
+      text-shadow: 0 3px 0 #10070c, 0 0 24px #b7485b44;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: 10px;
+      color: var(--gold);
+      font-style: italic;
+      font-size: .72em;
+    }
+
+    .moon {
+      display: grid;
+      width: 100px;
+      height: 100px;
+      margin: 28px auto 21px;
+      place-items: center;
+      color: var(--gold);
+      font-size: 3.4rem;
+      border: 1px solid #c8956288;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #f3c6d02b, #b7485b0c 65%);
+      box-shadow: 0 0 35px #b7485b33, inset 0 0 22px #c8956218;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .intro {
+      max-width: 470px;
+      margin: 0 auto;
+      color: #eadde0;
+      font-size: clamp(1rem, 2.6vw, 1.2rem);
+      line-height: 1.75;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      width: min(100%, 310px);
+      margin: 24px auto;
+      color: var(--rose);
+    }
+
+    .divider::before, .divider::after {
+      height: 1px;
+      flex: 1;
+      content: "";
+      background: linear-gradient(90deg, transparent, #b7485b99);
+    }
+
+    .divider::after { transform: rotate(180deg); }
+
+    .note {
+      max-width: 470px;
+      margin: 0 auto;
+      color: #d8c8cd;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .note strong {
+      color: #d7a2ac;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .letter {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 600ms ease, opacity 450ms ease, margin 600ms ease;
+      margin: 0 auto;
+    }
+
+    .letter-inner { overflow: hidden; }
+
+    .letter p {
+      max-width: 440px;
+      margin: 20px auto 0;
+      padding: 18px 20px;
+      color: #32141f;
+      background: #ead9d5;
+      border-radius: 3px;
+      border: 1px solid #c8956280;
+      box-shadow: 0 7px 22px #0005;
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+
+    .card.open .letter {
+      grid-template-rows: 1fr;
+      margin-top: 18px;
+      opacity: 1;
+    }
+
+    .reveal {
+      position: relative;
+      z-index: 1;
+      margin-top: 26px;
+      padding: 12px 20px;
+      color: #fff1ed;
+      background: #a33c59;
+      border: 1px solid #e0a0aa;
+      border-radius: 2px;
+      cursor: pointer;
+      font: 700 .82rem "Trebuchet MS", sans-serif;
+      letter-spacing: .07em;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .reveal:hover { background: #c04e6b; transform: translateY(-2px); }
+    .reveal:focus-visible { outline: 2px solid var(--cream); outline-offset: 4px; }
+
+    .music-status {
+      margin: 12px 0 0;
+      color: #f0a8b6;
+      font: .82rem "Trebuchet MS", sans-serif;
+    }
+
+    .signature {
+      margin: 25px 0 0;
+      color: var(--rose);
+      font-size: 1.04rem;
+      font-style: italic;
+    }
+
+    .footnote {
+      margin: 18px 0 0;
+      color: #bca8ae;
+      font: .68rem "Trebuchet MS", sans-serif;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    @keyframes twinkle {
+      from { opacity: .35; transform: scale(.7); }
+      to { opacity: 1; transform: scale(1.25); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+
+    @keyframes rose-drift {
+      from { transform: translate3d(0, 0, 0) rotate(-18deg); }
+      to { transform: translate3d(45px, -120vh, 0) rotate(28deg); }
+    }
+
+    @keyframes bokeh-glow {
+      from { opacity: .4; transform: scale(.98); }
+      to { opacity: .9; transform: scale(1.02); }
+    }
+
+    @keyframes message-drift {
+      from { transform: translate3d(0, 0, 0) rotate(-3deg); }
+      50% { transform: translate3d(28px, -60vh, 0) rotate(2deg); }
+      to { transform: translate3d(-12px, -130vh, 0) rotate(-2deg); }
+    }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true">
+    <span class="star"></span><span class="star"></span><span class="star"></span>
+    <span class="star"></span><span class="star"></span><span class="star"></span>
+  </div>
+  <div class="roses" aria-hidden="true">
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+    <span class="rose">🌹</span><span class="rose">🌹</span><span class="rose">🌹</span>
+    <span class="heart">💝</span><span class="heart">💝</span><span class="heart">💝</span>
+    <span class="heart">💝</span><span class="heart">💝</span><span class="heart">💝</span>
+    <span class="detail">💕</span><span class="detail">✨</span><span class="detail">🎀</span>
+    <span class="detail">🌸</span><span class="detail">💗</span><span class="detail">✨</span>
+    <span class="message">te amo tanto que no creesh mi princesa hemosha</span>
+    <span class="message">nunca dudes de mi amor hacia ti bebe</span>
+    <span class="message">trato de mejorar cada dia por ti</span>
+  </div>
+
+  <main class="page">
+    <article class="card" id="anniversary-card">
+      <p class="eyebrow">Solo nosotros dos contra el mundo entero amorchito mio</p>
+      <h1>Felices <span>5 mesesitos mamorsh mio</span></h1>
+      <div class="moon" aria-hidden="true">🤧</div>
+      <p class="intro">
+        Cinco mesesitosh tan hemoshos contigo mi vidaa y todavia siento que esto
+        es aun el principio poque tu amor nunca tendra fin mi vida, gracias por
+        llenarme cada dia de mi vida con tu amor
+      </p>
+      <div class="divider" aria-hidden="true">💝</div>
+      <p class="note">
+        Gracias mamrosh mio por hacerme sacar cada risita en mis dias que llevo
+        contigo, por cada beshito que me das y cada momentito que me siento tan
+        seguro de mi mismo y tan seguro contigo, eres mi lugar seguro mamor
+      </p>
+
+      <section class="letter" id="love-letter" aria-hidden="true">
+        <div class="letter-inner">
+          <p>
+            Mi bebe hemosha, te abro mi corazoncito con esta cartita tan bella que te hice
+            que es todita para ti mi corazon, es para que sepash que elesh una de las coshitas mas bellas
+            que me ha pasado en este mundo tan hemosho pero solo contigo mamorsh, elesh mi dia a dia
+            mis ganash de vivir, sin ti yo no seria nada mi princesa hemosha
+            gashas por compartir cada momento de tu vida conmigo mamor, por hacerme el mas feliz
+            cada dia que pasa entre nosotrosh, por hacerme sentir tan seguro de mi contigo mamorsh
+            tu elesh mi lugar seguro y nunca voy a negarlo mi princesa hemosha
+            contigo me puedo divertir y expresar todo lo que siento por ti mailof
+            TU ERES MI AMOR VERDADERO MI PRINCESA HEMOSHA y creeme que hare todo lo posible para que esto
+            tan hemosho nunca vaya a terminar y que duremosh asi hasta unas pasitash y morir en el mismo ataud
+            mamor mio, GASHAS POR MOSTRARME esa niñita interna tan hemosha, ese corazon tan hemosho que portas cada dia
+            esos sentimientos tan vivos y tan eternos que me muestrash, te lo juro que por dentro elesh una coshita tan
+            kawaii y amorosa mamorsh, y por fuera elesh la mujer que siempre soñe, todo mamorsh, tu elesh mi todo y nunca creas
+            que te cambiare mi vida hemosha, para mi, tu elesh mi corazon entero tu estuviste en mi corazon siempre en cada momentito
+            en cada segundito de nuestras vidas mamorsh, fuiste y eres la cosa mas importante en este mundo para mi
+            creeme que siempre tratare cuidarte y tratarte como una dama como te lo mereces mi princesa hemosha
+            estoy tan orgulloso de ti mi vida, de tener una mujer tan hemosha en este mundo que me hace tan amado y querido
+            te adoro con todo mi corazon mi reyna hemosha, tu sabesh que mi corazon es tan hermoso y tuyo mi vida que cuando ves
+            por dentro de el solo hay amor y ojitosh para ti mi princesa hemosha, gashas por valorizar mi niño interno
+            mis berrinches MI TODO MI PRINCESA creeme que eso me hace tan feliz y tan vivo poque me siento cada vez
+            mas junto a tii mamorshh, mientras que yo siempre te dejo ser como tu quisiste
+
+            gashas por todito mamorsh, por estos 5 mesesitosh llenitos de amor y todo lo que falta mi bebe peshosha
+            creeme que te amo con todo mi corazon y toda esta cartita no llega casi ni cerca a lo que te amo mamorsh poque es INFINITO MI AMOR HACIA TI
+
+            MWAHHH :3 COSHITA HEMOSHAA TIAMUUUU
+            <br><br>
+            TIAMU MUSHOOO MI NIÑITA TIERNITAAA 💝
+          </p>
+        </div>
+      </section>
+
+      <button class="reveal" id="reveal-button" type="button" aria-expanded="false" aria-controls="love-letter">
+        Abrir mi cartita
+      </button>
+      <p class="music-status" id="music-status" aria-live="polite"></p>
+      <p class="signature">Con todo mi corazon mi bebe hemosha, para mi coshita mas hemosha de este planeta</p>
+      <p class="footnote">23 De mayo de 2026 el dia que inicio todo y vamos hasta casarnos amor</p>
+    </article>
+  </main>
+
+  <audio id="letter-music" preload="none">
+    <source src="Trippie%20Redd%20Performs%20Wish%20With%20Live%20Orchestra%20Audiomack%20Trap%20Symphony.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const card = document.querySelector("#anniversary-card");
+    const letter = document.querySelector("#love-letter");
+    const button = document.querySelector("#reveal-button");
+    const music = document.querySelector("#letter-music");
+    const musicStatus = document.querySelector("#music-status");
+
+    button.addEventListener("click", () => {
+      const isOpen = card.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(isOpen));
+      letter.setAttribute("aria-hidden", String(!isOpen));
+      button.textContent = isOpen ? "Cerrar mi cartita" : "Abrir mi cartita";
+
+      if (isOpen) {
+        musicStatus.textContent = "";
+        music.play().catch(() => {
+          musicStatus.textContent = "No se pudo reproducir la música. Revisa que el archivo esté disponible.";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
